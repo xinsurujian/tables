@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="stylesheet" href="./style/style.css">
+	<title>Document</title>
+</head>
+<body>
+	<div ng-controller="table">
+		 <input type="text" placeholder="search FirstName" ng-model="searchText" ng-focus="add('FirstName',$event)">
+		 <input type="text" placeholder="search LastName" ng-model="searchText1" ng-focus="add('LastName',$event)">
+		 <input type="checkbox">Exact Match
+		 
+	<table >
+		<thead>
+			<tr>
+				<td ng-click="setSort('FirstName')">FirstName<span ng-class="addClass('FirstName')"></span></td>
+				<td ng-click="setSort('LastName')">LastName<span ng-class="addClass('LastName')"></span></td>
+				<td ng-click="setSort('Gender')">Gender<span ng-class="addClass('Gender')"></span></td>
+				<td ng-click="setSort('Salary')">Salary<span ng-class="addClass('Salary')"></span></td>
+				<td ng-click="setSort('Birthday')">Birthday<span ng-class="addClass('Birthday')"></span></td>
+			</tr>
+		</thead>
+		<tbody ng-repeat="name in names|orderBy:active:add|filter:search:value">
+			<tr>
+				<td>{{name.FirstName}}</td>
+				<td>{{name.LastName}}</td>
+				<td>{{name.Gender}}</td>
+				<td ng-bind="name.Salary|currency:'￥'"></td>
+				<td ng-bind="name.Birthday|date:'yyyy-MM-dd'"></td>
+			</tr>
+		 </tbody>
+		
+		
+
+	</table>
+    </div>
+	<script src="./script/angular.min.js"></script>
+	<script src="./script/index.js"></script>
+</body>
+</html>
